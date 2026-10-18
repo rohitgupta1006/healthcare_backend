@@ -1,0 +1,67 @@
+{
+  "info": {
+    "name": "Healthcare Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "base_url", "value": "http://127.0.0.1:8000"},
+    {"key": "access_token", "value": ""},
+    {"key": "patient_id", "value": "1"},
+    {"key": "doctor_id", "value": "1"},
+    {"key": "mapping_id", "value": "1"}
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Rohit Gupta\",\n  \"email\": \"rohit@example.com\",\n  \"password\": \"StrongPass123\"\n}"},
+            "url": {"raw": "{{base_url}}/api/auth/register/", "host": ["{{base_url}}"], "path": ["api", "auth", "register", ""]}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"rohit@example.com\",\n  \"password\": \"StrongPass123\"\n}"},
+            "url": {"raw": "{{base_url}}/api/auth/login/", "host": ["{{base_url}}"], "path": ["api", "auth", "login", ""]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {"name": "Create Patient", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Amit Sharma\",\n  \"email\": \"amit@example.com\",\n  \"phone\": \"9876543210\",\n  \"date_of_birth\": \"1998-04-12\",\n  \"gender\": \"Male\",\n  \"address\": \"Agra, Uttar Pradesh\"\n}"}, "url": {"raw": "{{base_url}}/api/patients/", "host": ["{{base_url}}"], "path": ["api", "patients", ""]}}},
+        {"name": "List Patients", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/patients/", "host": ["{{base_url}}"], "path": ["api", "patients", ""]}}},
+        {"name": "Get Patient", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/patients/{{patient_id}}/", "host": ["{{base_url}}"], "path": ["api", "patients", "{{patient_id}}", ""]}}},
+        {"name": "Update Patient", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Amit Kumar Sharma\",\n  \"email\": \"amit@example.com\",\n  \"phone\": \"9876543210\",\n  \"date_of_birth\": \"1998-04-12\",\n  \"gender\": \"Male\",\n  \"address\": \"Agra, Uttar Pradesh\"\n}"}, "url": {"raw": "{{base_url}}/api/patients/{{patient_id}}/", "host": ["{{base_url}}"], "path": ["api", "patients", "{{patient_id}}", ""]}}},
+        {"name": "Delete Patient", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/patients/{{patient_id}}/", "host": ["{{base_url}}"], "path": ["api", "patients", "{{patient_id}}", ""]}}}
+      ]
+    },
+    {
+      "name": "Doctors",
+      "item": [
+        {"name": "Create Doctor", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Dr. Priya Singh\",\n  \"email\": \"priya@example.com\",\n  \"phone\": \"9876501234\",\n  \"specialization\": \"Cardiology\",\n  \"license_number\": \"MED-AG-1001\",\n  \"experience_years\": 8\n}"}, "url": {"raw": "{{base_url}}/api/doctors/", "host": ["{{base_url}}"], "path": ["api", "doctors", ""]}}},
+        {"name": "List Doctors", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/doctors/", "host": ["{{base_url}}"], "path": ["api", "doctors", ""]}}},
+        {"name": "Get Doctor", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/doctors/{{doctor_id}}/", "host": ["{{base_url}}"], "path": ["api", "doctors", "{{doctor_id}}", ""]}}},
+        {"name": "Update Doctor", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"name\": \"Dr. Priya Singh\",\n  \"email\": \"priya@example.com\",\n  \"phone\": \"9876501234\",\n  \"specialization\": \"Cardiology\",\n  \"license_number\": \"MED-AG-1001\",\n  \"experience_years\": 9\n}"}, "url": {"raw": "{{base_url}}/api/doctors/{{doctor_id}}/", "host": ["{{base_url}}"], "path": ["api", "doctors", "{{doctor_id}}", ""]}}},
+        {"name": "Delete Doctor", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/doctors/{{doctor_id}}/", "host": ["{{base_url}}"], "path": ["api", "doctors", "{{doctor_id}}", ""]}}}
+      ]
+    },
+    {
+      "name": "Mappings",
+      "item": [
+        {"name": "Assign Doctor", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"patient\": {{patient_id}},\n  \"doctor\": {{doctor_id}}\n}"}, "url": {"raw": "{{base_url}}/api/mappings/", "host": ["{{base_url}}"], "path": ["api", "mappings", ""]}}},
+        {"name": "List Mappings", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/mappings/", "host": ["{{base_url}}"], "path": ["api", "mappings", ""]}}},
+        {"name": "Get Patient Doctors", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/mappings/{{patient_id}}/", "host": ["{{base_url}}"], "path": ["api", "mappings", "{{patient_id}}", ""]}}},
+        {"name": "Remove Mapping", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}], "url": {"raw": "{{base_url}}/api/mappings/{{mapping_id}}/", "host": ["{{base_url}}"], "path": ["api", "mappings", "{{mapping_id}}", ""]}}}
+      ]
+    }
+  ]
+}
